@@ -1,17 +1,12 @@
-import React, {useReducer} from 'react';
+import React, {FC, useReducer} from 'react';
 import './App.css';
 import {Actions, getInitialState, rootReducer} from "../store";
 import {Asset, Holder} from "../types";
 import {HolderForm} from "../components/HolderForm";
 import {AssetForm} from "../components/AssetForm";
+import {List, Segment} from "semantic-ui-react";
 
-const container = {
-  alignItems: 'center',
-  display: 'flex',
-  justifyContent: 'center'
-};
-
-export const App: React.FC = () => {
+export const App: FC = () => {
   const initialState = getInitialState();
   const [state, dispatch] = useReducer(rootReducer, initialState);
   const holderHandler = (h: Holder) => {
@@ -25,47 +20,62 @@ export const App: React.FC = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <h2>New Holder</h2>
-        <HolderForm onSubmit={holderHandler}/>
-        <div style={container}>
-          <ul>
-            <h3>Active</h3>
-            {
-              Object.values(state.holders).filter(x => !x.blocked).map(({name, id}) => <li key={id}>
-                {name}
-              </li>)
-            }
-          </ul>
-          <ul>
-            <h3>Blocked</h3>
-            {
-              Object.values(state.holders).filter(x => x.blocked).map(({name, id}) => <li key={id}>
-                {name}
-              </li>)
-            }
-          </ul>
-        </div>
-        <AssetForm holders={state.holders} onSubmit={assetHandler}/>
-        <div style={container}>
-          <ul>
-            <h3>Active</h3>
-            {
-              Object.values(state.assets).filter(x => !x.assignedTo).map(({name, id, assignedTo}) => <li key={id}>
-                {name}, {typeof assignedTo === 'string' ? state.holders[assignedTo].name : 'Free'}
-              </li>)
-            }
-          </ul>
-          <ul>
-            <h3>Blocked</h3>
-            {
-              Object.values(state.assets).filter(x => x.assignedTo).map(({name, id, assignedTo}) => <li key={id}>
-                {name}, {typeof assignedTo === 'string' ? state.holders[assignedTo].name : 'Free'}
-              </li>)
-            }
-          </ul>
-        </div>
-      </header>
+      <Segment color={"orange"}>
+      <h2>New Holder</h2>
+      <HolderForm onSubmit={holderHandler}/>
+        <h3>Active</h3>
+        <List divided relaxed>
+          {
+            Object.values(state.holders).filter(x => !x.blocked).map(({name, notes, id}) =>
+              <List.Item key={id}>
+                <List.Content>
+                  <List.Header>{name}</List.Header>
+                  {notes}
+                </List.Content>
+              </List.Item>)
+          }
+        </List>
+        <h3>Blocked</h3>
+        <List divided relaxed>
+          {
+            Object.values(state.holders).filter(x => !x.blocked).map(({name, notes, id}) =>
+              <List.Item key={id}>
+                <List.Content>
+                  <List.Header>{name}</List.Header>
+                  {notes}
+                </List.Content>
+              </List.Item>)
+          }
+        </List>
+      </Segment>
+
+      <Segment color={'teal'}>
+      <AssetForm holders={state.holders} onSubmit={assetHandler}/>
+        <h3>Free</h3>
+        <List divided relaxed>
+          {
+            Object.values(state.assets).filter(x => !x.assignedTo).map(({name, id, assignedTo}) =>
+              <List.Item key={id}>
+                <List.Content>
+                  <List.Header>{name}</List.Header>
+                  {typeof assignedTo === 'string' ? `Assigned to ${state.holders[assignedTo].name}` : 'Free'}
+                </List.Content>
+              </List.Item>)
+          }
+        </List>
+        <h3>Taken</h3>
+        <List divided relaxed>
+          {
+            Object.values(state.assets).filter(x => x.assignedTo).map(({name, id, assignedTo}) =>
+              <List.Item key={id}>
+                <List.Content>
+                  <List.Header>{name}</List.Header>
+                  {typeof assignedTo === 'string' ? `Assigned to ${state.holders[assignedTo].name}` : 'Free'}
+                </List.Content>
+              </List.Item>)
+          }
+        </List>
+      </Segment>
     </div>
   );
 };
