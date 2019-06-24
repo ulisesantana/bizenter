@@ -1,10 +1,9 @@
 import {useState} from 'react';
 
 export enum Section {
-  Randomize = 'RANDOMIZE',
-  Edit = 'EDIT',
-  List = 'LIST',
-  Settings = 'SETTINGS'
+  TransferRecords = 'TRANSFER_RECORDS',
+  Holders = 'HOLDERS',
+  Assets = 'ASSETS'
 }
 
 function goToGenerator(section: Section, setSection: Function){
@@ -14,21 +13,19 @@ function goToGenerator(section: Section, setSection: Function){
 }
 
 export interface SectionHandlers {
-  goToRandomize: () => void,
-  goToEdit: () => void,
-  goToList: () => void,
-  goToSettings: () => void
+  gotoTransferRecords: () => void,
+  goToHolders: () => void,
+  goToAssets: () => void
 }
 
-export function useSectionManager(initialSection = Section.Randomize): [Section, SectionHandlers]{
+export function useSectionManager(initialSection = Section.Assets): [Section, SectionHandlers]{
   const [section, setSection] = useState(initialSection);
   return [
     section,
     {
-      goToRandomize: goToGenerator(Section.Randomize, setSection),
-      goToEdit: goToGenerator(Section.Edit, setSection),
-      goToList: goToGenerator(Section.List, setSection),
-      goToSettings: goToGenerator(Section.Settings, setSection)
+      gotoTransferRecords: goToGenerator(Section.TransferRecords, setSection),
+      goToHolders: goToGenerator(Section.Holders, setSection),
+      goToAssets: goToGenerator(Section.Assets, setSection)
     }
   ];
 }

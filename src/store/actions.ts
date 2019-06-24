@@ -1,5 +1,4 @@
 import {Asset, Store} from "../types";
-import {ChangeEvent} from "react";
 
 export enum Actions {
   UPSERT_ASSET = 'UPSERT_ASSET',
