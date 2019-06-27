@@ -1,5 +1,4 @@
 import React, {FC, useReducer, Suspense} from 'react';
-import './App.css';
 import {getInitialState, rootReducer} from "../store";
 import {Menu} from '../components';
 import {Container, Dimmer, Loader} from "semantic-ui-react";
@@ -21,7 +20,7 @@ export const App: FC = () => {
   const [section, handlers] = useSectionManager();
 
   return (
-    <>
+    <div className={'App'}>
       <Menu section={section} handlers={handlers}/>
       <Container className={'main'}>
 
@@ -64,7 +63,7 @@ export const App: FC = () => {
         </Suspense>
 
       </Container>
-    </>
+    </div>
   );
 };
 
