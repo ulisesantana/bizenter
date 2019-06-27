@@ -34,4 +34,4 @@ export const TransferRecordTable: FC<TransferRecordTableProps> = ({holders, asse
   </Table>
 );
 
-
+export default TransferRecordTable;
