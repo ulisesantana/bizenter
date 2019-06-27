@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e68b9834a82a44db8734251c3350c164",
+    "revision": "9b34824e48dbff1f94a4b37e20721028",
     "url": "/bizenter/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bizenter/static/css/2.b398f238.chunk.css"
   },
   {
-    "revision": "56a0e6f3bf058475dda0",
-    "url": "/bizenter/static/css/main.25be0010.chunk.css"
+    "revision": "7af2478ab1587f63fdaf",
+    "url": "/bizenter/static/css/main.2a66e9fd.chunk.css"
   },
   {
     "revision": "20c4cb33186968aebb54",
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/bizenter/static/js/4.ba72983a.chunk.js"
   },
   {
-    "revision": "56a0e6f3bf058475dda0",
+    "revision": "7af2478ab1587f63fdaf",
     "url": "/bizenter/static/js/main.6095e0ab.chunk.js"
   },
   {
