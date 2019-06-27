@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/bizenter/precache-manifest.8b7a6f3c10d9db7f46ffe95878a08aa0.js"
+  "/bizenter/precache-manifest.1630e1de73e32daa938736136070f1ca.js"
 );
 
 self.addEventListener('message', (event) => {
