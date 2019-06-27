@@ -1,4 +1,5 @@
 import {MouseEventHandler} from "react";
+import {SemanticCOLORS} from "semantic-ui-react/dist/commonjs/generic";
 
 export interface Holder {
   id: string;
@@ -44,3 +45,12 @@ export interface Store {
   holders: EntityStore<Holder>,
   records: TransferRecord[]
 }
+
+export type SemanticColors = | SemanticCOLORS
+  | 'facebook'
+  | 'google plus'
+  | 'vk'
+  | 'twitter'
+  | 'linkedin'
+  | 'instagram'
+  | 'youtube'

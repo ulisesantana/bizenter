@@ -1,17 +1,20 @@
 import {AssetForm} from "../components/AssetForm";
-import { List, Segment} from "semantic-ui-react";
+import {List, Segment} from "semantic-ui-react";
 import React, {FC, MouseEventHandler, useState} from "react";
-import {Asset, Holder} from "../types";
+import {Asset, Store, TransferRecord} from "../types";
 import {Action, Actions} from "../store";
-import {BackButton} from "../components";
+import {BackButton, TransferRecordTable} from "../components";
 
-export interface AssetCRUDProps {
-  assets: Record<string, Asset>,
-  holders: Record<string, Holder>,
+export interface AssetCRUDProps extends Store {
   dispatch: (x: Action) => void
 }
 
-export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, dispatch}) => {
+
+function filterTransferRecords(id: string) {
+  return ({asset}: TransferRecord) => asset === id;
+}
+
+export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, records, dispatch}) => {
   const onSubmit = (a: Asset) => {
     dispatch({type: Actions.UPSERT_ASSET, payload: a})
   };
@@ -35,12 +38,27 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, dispatch}) => {
     setEditionMode(false);
   };
 
+  const history = records
+    .filter(filterTransferRecords(currentAsset));
+
   return editionMode ?
-    <Segment>
-      <BackButton onClick={onClickBack}/>
-      <h2>Edit Asset</h2>
-      <AssetForm holders={holders} onSubmit={onSubmit} asset={assets[currentAsset]}/>
-    </Segment>
+    <>
+      <Segment>
+        <BackButton onClick={onClickBack}/>
+        <h2>Edit Asset</h2>
+        <AssetForm holders={holders} onSubmit={onSubmit} asset={assets[currentAsset]}/>
+      </Segment>
+      {history.length &&
+      <Segment>
+        <h2>{assets[currentAsset].name} History</h2>
+        <TransferRecordTable
+          holders={holders}
+          assets={assets}
+          records={history}
+        />
+      </Segment>
+      }
+    </>
     :
     <>
       <Segment>
@@ -64,7 +82,7 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, dispatch}) => {
         <List divided relaxed>
           {
             Object.values(assets).filter(x => x.assignedTo).map(({name, id, assignedTo}) =>
-              <List.Item key={id}  onClick={onClickAsset} data-id={id}>
+              <List.Item key={id} onClick={onClickAsset} data-id={id}>
                 <List.Content>
                   <List.Header>{name}</List.Header>
                   {typeof assignedTo === 'string' ? `Assigned to ${holders[assignedTo].name}` : 'Free'}

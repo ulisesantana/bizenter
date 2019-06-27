@@ -14,16 +14,19 @@ export const App: FC = () => {
   return (
     <>
       <Menu section={section} handlers={handlers}/>
-      <Container>
+      <Container className={'main'}>
 
         {section === Section.Holders &&
         <HolderCRUD
+          assets={assets}
+          records={records}
           holders={holders}
           dispatch={dispatch}
         />
         }
         {section === Section.Assets &&
         <AssetCRUD
+          records={records}
           assets={assets}
           holders={holders}
           dispatch={dispatch}

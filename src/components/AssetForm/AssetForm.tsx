@@ -1,8 +1,9 @@
 import React, {Component, FormEventHandler} from "react";
 import {Asset, Holder} from "../../types";
-import {Button, Form} from "semantic-ui-react";
+import {Form} from "semantic-ui-react";
 import {onChangeFormFieldHandler, toOptions} from "../../utils";
 import {TransferPayload} from "../../store";
+import {FormButton} from "../FormButton";
 
 export interface AssetFormProps {
   asset?: Asset,
@@ -100,7 +101,7 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
             onChange={this.onChangeHandler}
             value={this.state.assignedTo}
           />
-          <Button type='submit'>{this.editMode ? 'Save' : 'Create'}</Button>
+          <FormButton editMode={this.editMode}/>
         </Form>
       </>
     )

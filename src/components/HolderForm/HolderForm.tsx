@@ -1,7 +1,8 @@
 import React, {Component, FormEventHandler} from "react";
 import {Holder} from "../../types";
-import {Button, Form} from "semantic-ui-react";
+import {Form} from "semantic-ui-react";
 import {onChangeFormFieldHandler} from "../../utils";
+import {FormButton} from "../FormButton";
 
 export interface HolderFormProps {
   holder?: Holder,
@@ -59,7 +60,7 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
             onChange={this.onChangeHandler}
             label='Blocked'
           />
-          <Button type='submit'>{this.editMode ? 'Save' : 'Create'}</Button>
+          <FormButton editMode={this.editMode}/>
         </Form>
     )
   }
