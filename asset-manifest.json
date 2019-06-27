@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/bizenter/static/css/main.fed9eec1.chunk.css",
+    "main.css": "/bizenter/static/css/main.5d817185.chunk.css",
     "main.js": "/bizenter/static/js/main.bd059f1f.chunk.js",
     "main.js.map": "/bizenter/static/js/main.bd059f1f.chunk.js.map",
     "runtime~main.js": "/bizenter/static/js/runtime~main.27989e42.js",
@@ -9,10 +9,10 @@
     "static/js/2.17a114c2.chunk.js": "/bizenter/static/js/2.17a114c2.chunk.js",
     "static/js/2.17a114c2.chunk.js.map": "/bizenter/static/js/2.17a114c2.chunk.js.map",
     "index.html": "/bizenter/index.html",
-    "precache-manifest.57fd166f38693ac39f97627a0baa275f.js": "/bizenter/precache-manifest.57fd166f38693ac39f97627a0baa275f.js",
+    "precache-manifest.f208cef8d78fe57f2de186216e91b255.js": "/bizenter/precache-manifest.f208cef8d78fe57f2de186216e91b255.js",
     "service-worker.js": "/bizenter/service-worker.js",
     "static/css/2.b398f238.chunk.css.map": "/bizenter/static/css/2.b398f238.chunk.css.map",
-    "static/css/main.fed9eec1.chunk.css.map": "/bizenter/static/css/main.fed9eec1.chunk.css.map",
+    "static/css/main.5d817185.chunk.css.map": "/bizenter/static/css/main.5d817185.chunk.css.map",
     "static/media/semantic.min.css": "/bizenter/static/media/outline-icons.ef60a4f6.woff"
   }
 }
