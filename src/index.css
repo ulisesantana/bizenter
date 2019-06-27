@@ -4,7 +4,14 @@
   padding: 24px;
 }
 
+.menu.ui {
+  margin: 0 auto;
+  justify-content: center;
+  width: max-content;
+}
+
 body {
+  background-color: rgba(240,240,0,0.6);
   margin: 0;
   padding: 0;
   font-family:
@@ -19,6 +26,12 @@ code {
     monospace;
 }
 
-.ui.menu {
-  justify-content: center;
+@media only screen and (max-width: 767px){
+  .menu.ui{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .menu.ui > .item {
+    width: auto !important;
+  }
 }

@@ -93,3 +93,5 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, records, dispatc
       </Segment>
     </>
 };
+
+export default AssetCRUD;

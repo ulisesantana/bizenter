@@ -80,3 +80,5 @@ export const HolderCRUD: FC<HolderCRUDProps> =
       </>
     )
   };
+
+export default HolderCRUD;
