@@ -19,13 +19,13 @@ const initialState = {
 };
 
 export class AssetForm extends Component<AssetFormProps, Asset> {
-  static defaultProps = {
-    asset: initialState
-  };
+  editMode = this.props.asset !== undefined;
+  state = this.editMode
+    ? this.props.asset as Asset
+    : initialState as Asset;
 
-  state = this.props.asset as Asset;
 
-  options = toOptions(this.props.holders,);
+  options = toOptions(this.props.holders);
 
   onChangeHandler = onChangeFormFieldHandler(
     this.state,
@@ -36,11 +36,12 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
 
   onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
-    const {assignedTo: from} = this.props.asset as Asset;
+    const from = this.editMode
+      ? this.props.asset!.assignedTo
+      : null;
 
-    if (from === this.state.assignedTo ) {
+    if (from === this.state.assignedTo) {
       this.props.onSubmit(this.state);
-      this.setState(initialState);
     } else {
       this.props.onSubmit({
           ...this.state,
@@ -49,17 +50,21 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
         } as TransferPayload
       );
     }
+
+    if (!this.editMode) {
+      this.setState(initialState)
+    }
   };
 
   render() {
 
     return (
       <>
-        <h2>New Asset</h2>
         <Form onSubmit={this.onSubmit}>
           <Form.Input
             name="name"
             value={this.state.name}
+            required
             onChange={this.onChangeHandler}
             placeholder='Full Name'
             label='Full Name'
@@ -79,6 +84,7 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
           />
           <Form.Input
             name="serial"
+            required
             value={this.state.serial}
             onChange={this.onChangeHandler}
             placeholder='LHG1L451G6L1GL41'
@@ -92,8 +98,9 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
             placeholder='Holder'
             search
             onChange={this.onChangeHandler}
+            value={this.state.assignedTo}
           />
-          <Button type='submit'>Create</Button>
+          <Button type='submit'>{this.editMode ? 'Save' : 'Create'}</Button>
         </Form>
       </>
     )

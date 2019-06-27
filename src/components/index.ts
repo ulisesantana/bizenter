@@ -1,4 +1,6 @@
 export * from './AssetForm'
+export * from './BackButton'
 export * from './HolderForm'
 export * from './HolderTable'
+export * from './TransferRecordTable'
 export * from './Menu'

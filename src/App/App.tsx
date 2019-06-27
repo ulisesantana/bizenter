@@ -2,7 +2,7 @@ import React, {FC, useReducer} from 'react';
 import './App.css';
 import {getInitialState, rootReducer} from "../store";
 import {AssetCRUD, HolderCRUD} from "../views";
-import {Menu} from '../components';
+import {Menu, TransferRecordTable} from '../components';
 import {Container} from "semantic-ui-react";
 import {Section, useSectionManager} from "../utils";
 
@@ -30,11 +30,11 @@ export const App: FC = () => {
         />
         }
         {section === Section.TransferRecords &&
-        (<pre>
-          <code>
-            {JSON.stringify(Object.values(records), null, 2)}
-          </code>
-        </pre>)
+        <TransferRecordTable
+          assets={assets}
+          holders={holders}
+          records={records}
+        />
         }
       </Container>
     </>

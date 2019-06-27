@@ -1,3 +1,5 @@
+import {MouseEventHandler} from "react";
+
 export interface Holder {
   id: string;
   createDate: string;
@@ -10,6 +12,10 @@ export interface Holder {
 export interface Asset extends Holder {
   serial: string;
   assignedTo: string | boolean;
+}
+
+export interface Button {
+  onClick: MouseEventHandler
 }
 
 export interface TransferRecord {

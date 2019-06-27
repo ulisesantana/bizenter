@@ -1,12 +1,13 @@
-import React, {FC} from "react";
+import React, {FC, MouseEventHandler} from "react";
 import {Table} from "semantic-ui-react";
 import {Holder} from "../../types";
 
 export interface HolderTableProps {
-  holders: Record<string, Holder>
+  holders: Record<string, Holder>,
+  onClick: MouseEventHandler
 }
 
-export const HolderTable: FC<HolderTableProps> = ({holders}) => (
+export const HolderTable: FC<HolderTableProps> = ({holders, onClick}) => (
   <Table celled selectable>
     <Table.Header>
       <Table.Row>
@@ -18,7 +19,7 @@ export const HolderTable: FC<HolderTableProps> = ({holders}) => (
 
     <Table.Body>
       { Object.values(holders).map(({name, notes, blocked, id}) =>
-        <Table.Row key={id}>
+        <Table.Row key={id} data-id={id} onClick={onClick}>
           <Table.Cell>{name}</Table.Cell>
           <Table.Cell>{blocked ? 'Blocked' : 'Active'}</Table.Cell>
           <Table.Cell>{notes}</Table.Cell>

@@ -5,7 +5,7 @@ import {onChangeFormFieldHandler} from "../../utils";
 
 export interface HolderFormProps {
   holder?: Holder,
-  onSubmit: (h: Holder) => void
+  onSubmit: (h: any) => void
 }
 
 const initialState = {
@@ -15,11 +15,10 @@ const initialState = {
 };
 
 export class HolderForm extends Component<HolderFormProps, Holder> {
-  static defaultProps = {
-    holder: initialState
-  };
-
-  state = this.props.holder as Holder;
+  editMode = this.props.holder !== undefined;
+  state = this.editMode
+    ? this.props.holder as Holder
+    : initialState as Holder;
 
   onChangeHandler = onChangeFormFieldHandler(
     this.state,
@@ -31,13 +30,13 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
   onSubmit: FormEventHandler = (e) => {
     e.preventDefault();
     this.props.onSubmit(this.state);
-    if (!!this.props.holder && !this.props.holder.name) {
+
+    if (!this.editMode) {
       this.setState(initialState);
     }
   };
 
   render() {
-
     return (
         <Form onSubmit={this.onSubmit}>
           <Form.Input
@@ -60,7 +59,7 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
             onChange={this.onChangeHandler}
             label='Blocked'
           />
-          <Button type='submit'>Create</Button>
+          <Button type='submit'>{this.editMode ? 'Save' : 'Create'}</Button>
         </Form>
     )
   }
