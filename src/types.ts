@@ -1,23 +1,56 @@
-interface IEntity {
-  id: string,
-  createDate: string,
-  updateDate: string,
-  name: string,
-  notes: string
+import {MouseEventHandler} from "react";
+import {SemanticCOLORS} from "semantic-ui-react/dist/commonjs/generic";
+
+export interface Holder {
+  id: string;
+  createDate: string;
+  updateDate: string;
+  name: string;
+  notes: string;
+  blocked: boolean;
 }
 
-export interface IHolder extends IEntity{}
-
-export interface IAsset extends IEntity{
-  blocked: boolean,
-  serial: string,
-  assignedTo: string | null
+export interface Asset extends Holder {
+  serial: string;
+  assignedTo: string | boolean;
 }
 
-export interface IRecord {
-  id: string,
-  date: string,
-  from: string | null,
-  to: string | null,
-  asset: string
+export interface Button {
+  onClick: MouseEventHandler
 }
+
+export interface TransferRecord {
+  id: string;
+  date: string;
+  from: string | boolean;
+  to: string | boolean;
+  asset: string;
+}
+
+export interface SelectOption {
+  key: string
+  text: string
+  value: string | boolean
+}
+
+export type OnChangeFormFieldHandler<E,D> =
+  (event: E, data: D) => void
+
+export type Entity = TransferRecord | Holder;
+
+type EntityStore<T> = Record<string, T>;
+
+export interface Store {
+  assets: EntityStore<Asset>,
+  holders: EntityStore<Holder>,
+  records: TransferRecord[]
+}
+
+export type SemanticColors = | SemanticCOLORS
+  | 'facebook'
+  | 'google plus'
+  | 'vk'
+  | 'twitter'
+  | 'linkedin'
+  | 'instagram'
+  | 'youtube'

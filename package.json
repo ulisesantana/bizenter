@@ -1,35 +1,26 @@
 {
   "name": "bizenter",
   "version": "0.1.0",
-  "private": true,
+  "description": "",
   "dependencies": {
-    "@bitjourney/uuid-v4": "^1.0.1",
-    "@types/jest": "24.0.12",
-    "@types/node": "11.13.8",
-    "@types/react": "16.8.15",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.10",
+    "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
-    "dexie": "^2.0.4",
-    "electron-is-dev": "^1.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.0",
-    "styled-components": "^4.2.0"
+    "react-scripts": "3.0.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.2",
+    "typescript": "3.5.2",
+    "uuid": "^3.3.2"
   },
-  "main": "public/electron.js",
   "scripts": {
-    "start": "rescripts start",
-    "build": "rescripts build",
-    "test": "rescripts test",
-    "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
-    "eject": "react-scripts eject",
-    "postinstall": "electron-builder install-app-deps",
-    "preelectron-pack": "npm run build",
-    "electron-pack": "build -mw"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "homepage": "./",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -43,33 +34,6 @@
     ]
   },
   "devDependencies": {
-    "@rescripts/cli": "0.0.10",
-    "@rescripts/rescript-env": "0.0.10",
-    "@types/styled-components": "^4.1.14",
-    "concurrently": "^4.1.0",
-    "electron": "^5.0.0",
-    "electron-builder": "^20.39.0",
-    "typescript": "^3.4.5",
-    "wait-on": "^3.2.0"
-  },
-  "author": {
-    "name": "Ulises Santana",
-    "email": "ulisesantana@gmail.com",
-    "url": "https://ulisesantana.dev"
-  },
-  "build": {
-    "appId": "bizenter-electron",
-    "productName": "Bizenter",
-    "copyright": "Copyright © 2019 ${author}",
-    "mac": {
-      "category": "public.app-category.utilities"
-    },
-    "files": [
-      "build/**/*",
-      "node_modules/**/*"
-    ],
-    "directories": {
-      "buildResources": "assets"
-    }
+    "@types/uuid": "^3.4.4"
   }
 }

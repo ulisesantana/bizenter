@@ -1,44 +1,76 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# electron-react-typescript
 
-## Available Scripts
+### A Boilerplate for an Easy Start with TypeScript, React, and Electron.
 
-In the project directory, you can run:
+[![React](docs/img/react.png)](https://reactjs.org/)
+[![Webpack](docs/img/webpack.png)](https://webpack.js.org/)
+[![TypeScript](docs/img/ts.png)](https://www.typescriptlang.org/)
+[![Electron](docs/img/electron.png)](https://electronjs.org/)
+[![Redux](docs/img/redux.png)](https://redux.js.org/)
+[![Jest](docs/img/jest.png)](https://facebook.github.io/jest/)
 
-### `npm start`
+[Electron](https://electronjs.org/) application boilerplate based on [React](https://reactjs.org/), [Redux](https://redux.js.org/), and [Webpack](https://webpack.js.org/) for rapid application development using [TypeScript](https://www.typescriptlang.org/).
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Install
+Clone the repository with Git:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```bash
+git clone --depth=1 git@github.com:Robinfr/electron-react-typescript.git <your-project-name>
+```
 
-### `npm test`
+And then install the dependencies:
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+cd <your-project-name>
+npm install
+```
 
-### `npm run build`
+## Usage
+Both processes have to be started **simultaneously** in different console tabs:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm run start-renderer-dev
+npm run start-main-dev
+```
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This will start the application with hot-reload so you can instantly start developing your application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+You can also run do the following to start both in a single process:
 
-### `npm run eject`
+```bash
+npm run start-dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Packaging
+We use [Electron builder](https://www.electron.build/) to build and package the application. By default you can run the following to package for your current platform:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run dist
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This will create a installer for your platform in the `releases` folder.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+You can make builds for specific platforms (or multiple platforms) by using the options found [here](https://www.electron.build/cli). E.g. building for all platforms (Windows, Mac, Linux):
 
-## Learn More
+```bash
+npm run dist -- -mwl
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Husky and Prettier
+This project comes with both Husky and Prettier setup to ensure a consistent code style. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To change the code style, you can change the configuration in `.prettierrc`. 
+
+In case you want to get rid of this, you can removing the following from `package.json`:
+
+1. Remove `precommit` from the `scripts` section
+1. Remove the `lint-staged` section
+1. Remove `lint-staged`, `prettier`, `tslint-config-prettier`, and `husky` from the `devDependencies`
+
+Also remove `tslint-config-prettier` from the `extends` section in `tslint.json`.
+
+## About this project
+This project was set up from scratch but is heavily influenced by the [Electron React Boilerplate project](https://github.com/chentsulin/electron-react-boilerplate) and [React Redux TypeScript guide](https://github.com/piotrwitek/react-redux-typescript-guide).
+
+## License
+MIT © [R. Franken](https://github.com/Robinfr)
