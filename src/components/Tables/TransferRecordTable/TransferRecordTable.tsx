@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {Table} from "semantic-ui-react";
-import {Asset, Holder, TransferRecord} from "../../types";
+import {Asset, Holder, TransferRecord} from "../../../types";
 
 export interface TransferRecordTableProps {
   assets: Record<string, Asset>

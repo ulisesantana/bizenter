@@ -1,9 +1,9 @@
-import {AssetForm} from "../components/AssetForm";
+import {AssetForm} from "../components/Forms/AssetForm";
 import {List, Segment} from "semantic-ui-react";
 import React, {FC, MouseEventHandler, useState} from "react";
 import {Asset, Store, TransferRecord} from "../types";
 import {Action, Actions} from "../store";
-import {BackButton, TransferRecordTable} from "../components";
+import {BackButton, Data, Flex, TransferRecordTable} from "../components";
 
 export interface AssetCRUDProps extends Store {
   dispatch: (x: Action) => void
@@ -45,8 +45,12 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, records, dispatc
     <>
       <Segment>
         <BackButton onClick={onClickBack}/>
-        <h2>Edit Asset</h2>
-        <AssetForm holders={holders} onSubmit={onSubmit} asset={assets[currentAsset]}/>
+        <h2>{assets[currentAsset].name} details</h2>
+        <AssetForm
+          holders={holders}
+          onSubmit={onSubmit}
+          asset={assets[currentAsset]}
+        />
       </Segment>
       {history.length &&
       <Segment>
@@ -61,10 +65,14 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, records, dispatc
     </>
     :
     <>
-      <Segment>
-        <h2>Add Asset</h2>
+      <Flex alignContent="between">
         <AssetForm holders={holders} onSubmit={onSubmit}/>
-      </Segment>
+        <Data
+          icon="warehouse"
+          data={Object.keys(assets).length}
+          kpi={'Total Assets'}
+        />
+      </Flex>
       <Segment>
         <h3>Free</h3>
         <List divided relaxed>

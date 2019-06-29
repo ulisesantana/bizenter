@@ -1,8 +1,8 @@
 import React, {Component, FormEventHandler} from "react";
-import {Holder} from "../../types";
+import {Holder} from "../../../types";
 import {Form} from "semantic-ui-react";
-import {onChangeFormFieldHandler} from "../../utils";
-import {FormButton} from "../FormButton";
+import {onChangeFormFieldHandler} from "../../../utils";
+import {FormButton} from "../../FormButton";
 
 export interface HolderFormProps {
   holder?: Holder,
@@ -39,7 +39,7 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
 
   render() {
     return (
-        <Form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit} className={`text-green`}>
           <Form.Input
             name="name"
             value={this.state.name}

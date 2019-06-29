@@ -1,17 +1,42 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500,700&display=swap');
 
 .main {
-  padding: 24px;
+  padding: 12px;
 }
 
 .menu.ui.stackable {
-  margin: 0 auto;
+  border-radius: 0;
+  margin-top: -17px;
+  height: 90px;
   justify-content: center;
-  width: max-content;
+  overflow-y: visible;
 }
 
+.ui.icon.menu .item {
+  margin: 0 -2px;
+  justify-content: flex-end;
+  transition: all linear 0.1s;
+}
+.ui.icon.menu .item::before {
+  background: none;
+}
+
+.ui.stackable.labeled.icon.menu > a.active.item {
+  background-color: inherit;
+  border-radius: 10px;
+  height: 105px;
+  border: solid 2px #eaeaea;
+}
+
+.text-white {
+  color: white;
+}
+
+div.ui.page.modals form  label { color: white; }
+
 body {
-  background-color: #1A823F;
+  background-color: whitesmoke;
+  font-size: 1.25rem;
   margin: 0;
   padding: 0;
   font-family:

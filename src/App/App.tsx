@@ -6,7 +6,7 @@ import {Section, useSectionManager} from "../utils";
 
 const HolderCRUD = React.lazy(() => import('../views/HolderCRUD'));
 const AssetCRUD = React.lazy(() => import('../views/AssetCRUD'));
-const TransferRecordTable = React.lazy(() => import('../components/TransferRecordTable'));
+const TransferRecordTable = React.lazy(() => import('../components/Tables/TransferRecordTable'));
 
 const SuspenseLoader: FC = () => (
   <Dimmer active>
@@ -54,11 +54,16 @@ export const App: FC = () => {
           fallback={<SuspenseLoader/>}
         >
           {section === Section.TransferRecords &&
-          <TransferRecordTable
-            assets={assets}
-            holders={holders}
-            records={records}
-          />
+          (
+            <>
+              <div style={{height: '41px'}}/>
+              <TransferRecordTable
+                assets={assets}
+                holders={holders}
+                records={records}
+              />
+            </>
+          )
           }
         </Suspense>
 

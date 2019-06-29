@@ -1,6 +1,6 @@
 import React, {FC, MouseEventHandler} from "react";
 import {Table} from "semantic-ui-react";
-import {Holder} from "../../types";
+import {Holder} from "../../../types";
 
 export interface HolderTableProps {
   holders: Record<string, Holder>,

@@ -1,9 +1,10 @@
 import React, {Component, FormEventHandler} from "react";
-import {Asset, Holder} from "../../types";
-import {Form} from "semantic-ui-react";
-import {onChangeFormFieldHandler, toOptions} from "../../utils";
-import {TransferPayload} from "../../store";
-import {FormButton} from "../FormButton";
+import {Asset, Holder} from "../../../types";
+import {Button, Form, Icon} from "semantic-ui-react";
+import {onChangeFormFieldHandler, toOptions} from "../../../utils";
+import {TransferPayload} from "../../../store";
+import {FormButton} from "../../FormButton";
+import {Modal} from "../../Modal";
 
 export interface AssetFormProps {
   asset?: Asset,
@@ -60,7 +61,15 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
   render() {
 
     return (
-      <>
+      <Modal
+        title={`${this.editMode ? 'Edit' : 'Add'} Asset`}
+        cta={
+          <Button color={this.editMode ? undefined : 'green'} size="large">
+            <Icon name={this.editMode ? 'edit' : 'plus'}/>
+            {`${this.editMode ? 'Edit' : 'Add'} Asset`}
+          </Button>
+        }
+      >
         <Form onSubmit={this.onSubmit}>
           <Form.Input
             name="name"
@@ -103,7 +112,7 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
           />
           <FormButton editMode={this.editMode}/>
         </Form>
-      </>
+      </Modal>
     )
   }
 }
