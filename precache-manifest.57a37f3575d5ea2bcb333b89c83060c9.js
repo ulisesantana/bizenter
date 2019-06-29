@@ -1,35 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4ee824cd92ff185e3228a713e9fe4b76",
+    "revision": "464f004ac822adc9afcd2c17c51e96a6",
     "url": "/bizenter/index.html"
   },
   {
-    "revision": "20c4cb33186968aebb54",
+    "revision": "d098da624b6c2874d606",
     "url": "/bizenter/static/css/2.b398f238.chunk.css"
   },
   {
-    "revision": "1409c605733313110cff",
-    "url": "/bizenter/static/css/main.d3708c7e.chunk.css"
+    "revision": "b64402dfe2e170b51983",
+    "url": "/bizenter/static/css/main.7c483bb0.chunk.css"
   },
   {
-    "revision": "20c4cb33186968aebb54",
-    "url": "/bizenter/static/js/2.aa35a0ad.chunk.js"
+    "revision": "d098da624b6c2874d606",
+    "url": "/bizenter/static/js/2.687f5bcc.chunk.js"
   },
   {
-    "revision": "829ac2d1ecb9a3c66f00",
-    "url": "/bizenter/static/js/3.fa416032.chunk.js"
+    "revision": "5cb4cb98943d12def40a",
+    "url": "/bizenter/static/js/3.d5fa691f.chunk.js"
   },
   {
-    "revision": "9bb80a589b9cd97734b5",
-    "url": "/bizenter/static/js/4.ba72983a.chunk.js"
+    "revision": "be2d5ac9715d58186d38",
+    "url": "/bizenter/static/js/4.8feb6831.chunk.js"
   },
   {
-    "revision": "1409c605733313110cff",
-    "url": "/bizenter/static/js/main.6095e0ab.chunk.js"
+    "revision": "b64402dfe2e170b51983",
+    "url": "/bizenter/static/js/main.20cead99.chunk.js"
   },
   {
-    "revision": "1e0c0627b545a8d1dde3",
-    "url": "/bizenter/static/js/runtime~main.921761a4.js"
+    "revision": "bebb33346db62cabe0b9",
+    "url": "/bizenter/static/js/runtime~main.3995a1ba.js"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
