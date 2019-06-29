@@ -3,8 +3,7 @@ import {Segment} from "semantic-ui-react";
 import React, {FC, MouseEventHandler, useState} from "react";
 import {Asset, Store, TransferRecord} from "../types";
 import {Action, Actions} from "../store";
-import {BackButton, Data, Flex, TransferRecordTable} from "../components";
-import {AssetTable} from "../components/Forms/AssetTable";
+import {BackButton, Data, Flex, TransferRecordTable, AssetTable} from "../components";
 
 export interface AssetCRUDProps extends Store {
   dispatch: (x: Action) => void
