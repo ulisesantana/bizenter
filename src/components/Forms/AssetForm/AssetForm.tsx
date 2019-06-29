@@ -64,7 +64,7 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
       <Modal
         title={`${this.editMode ? 'Edit' : 'Add'} Asset`}
         cta={
-          <Button color={this.editMode ? undefined : 'green'} size="large">
+          <Button color={this.editMode ? undefined : 'green'}>
             <Icon name={this.editMode ? 'edit' : 'plus'}/>
             {`${this.editMode ? 'Edit' : 'Add'} Asset`}
           </Button>

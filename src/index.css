@@ -13,16 +13,17 @@
 }
 
 .ui.icon.menu .item {
-  margin: 0 -2px;
+  background-color: inherit;
+  height: 90px;
   justify-content: flex-end;
-  transition: all linear 0.1s;
+  transition: all linear 0.3s;
 }
 .ui.icon.menu .item::before {
   background: none;
 }
 
 .ui.stackable.labeled.icon.menu > a.active.item {
-  background-color: inherit;
+  background-color: #333333;
   border-radius: 10px;
   height: 105px;
   border: solid 2px #eaeaea;

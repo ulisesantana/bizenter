@@ -1,8 +1,9 @@
 import React, {Component, FormEventHandler} from "react";
 import {Holder} from "../../../types";
-import {Form} from "semantic-ui-react";
+import {Button, Form, Icon} from "semantic-ui-react";
 import {onChangeFormFieldHandler} from "../../../utils";
 import {FormButton} from "../../FormButton";
+import {Modal} from "../../Modal";
 
 export interface HolderFormProps {
   holder?: Holder,
@@ -39,7 +40,16 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
 
   render() {
     return (
-        <Form onSubmit={this.onSubmit} className={`text-green`}>
+      <Modal
+        title={`${this.editMode ? 'Edit' : 'Add'} Holder`}
+        cta={
+          <Button color={this.editMode ? undefined : 'green'}>
+            <Icon name={this.editMode ? 'edit' : 'plus'}/>
+            {`${this.editMode ? 'Edit' : 'Add'} Holder`}
+          </Button>
+        }
+      >
+        <Form onSubmit={this.onSubmit}>
           <Form.Input
             name="name"
             value={this.state.name}
@@ -62,6 +72,7 @@ export class HolderForm extends Component<HolderFormProps, Holder> {
           />
           <FormButton editMode={this.editMode}/>
         </Form>
+      </Modal>
     )
   }
 }

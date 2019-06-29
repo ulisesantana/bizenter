@@ -1,9 +1,10 @@
 import {AssetForm} from "../components/Forms/AssetForm";
-import {List, Segment} from "semantic-ui-react";
+import {Segment} from "semantic-ui-react";
 import React, {FC, MouseEventHandler, useState} from "react";
 import {Asset, Store, TransferRecord} from "../types";
 import {Action, Actions} from "../store";
 import {BackButton, Data, Flex, TransferRecordTable} from "../components";
+import {AssetTable} from "../components/Forms/AssetTable";
 
 export interface AssetCRUDProps extends Store {
   dispatch: (x: Action) => void
@@ -73,32 +74,11 @@ export const AssetCRUD: FC<AssetCRUDProps> = ({assets, holders, records, dispatc
           kpi={'Total Assets'}
         />
       </Flex>
-      <Segment>
-        <h3>Free</h3>
-        <List divided relaxed>
-          {
-            Object.values(assets).filter(x => !x.assignedTo).map(({name, id, assignedTo}) =>
-              <List.Item key={id} onClick={onClickAsset} data-id={id}>
-                <List.Content>
-                  <List.Header>{name}</List.Header>
-                  {typeof assignedTo === 'string' ? `Assigned to ${holders[assignedTo].name}` : 'Free'}
-                </List.Content>
-              </List.Item>)
-          }
-        </List>
-        <h3>Taken</h3>
-        <List divided relaxed>
-          {
-            Object.values(assets).filter(x => x.assignedTo).map(({name, id, assignedTo}) =>
-              <List.Item key={id} onClick={onClickAsset} data-id={id}>
-                <List.Content>
-                  <List.Header>{name}</List.Header>
-                  {typeof assignedTo === 'string' ? `Assigned to ${holders[assignedTo].name}` : 'Free'}
-                </List.Content>
-              </List.Item>)
-          }
-        </List>
-      </Segment>
+     <AssetTable
+      assets={assets}
+      holders={holders}
+      onClick={onClickAsset}
+     />
     </>
 };
 

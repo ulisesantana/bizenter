@@ -1,9 +1,9 @@
-import {Button, Icon, Segment} from "semantic-ui-react";
+import {Segment} from "semantic-ui-react";
 import {HolderForm} from "../components/Forms/HolderForm";
 import React, {FC, MouseEventHandler, useState} from "react";
 import {Holder, Store, TransferRecord} from "../types";
 import {Action, Actions} from "../store";
-import {BackButton, Data, Flex, HolderTable, Modal, TransferRecordTable} from "../components";
+import {BackButton, Data, Flex, HolderTable, TransferRecordTable} from "../components";
 
 export interface HolderCRUDProps extends Store {
   dispatch: (x: Action) => void
@@ -48,7 +48,7 @@ export const HolderCRUD: FC<HolderCRUDProps> =
           <>
             <Segment>
               <BackButton onClick={onClickBack}/>
-              <h2>Edit Holder</h2>
+              <h2>{holders[currentHolder].name} details</h2>
               <HolderForm onSubmit={onSubmit} holder={holders[currentHolder]}/>
             </Segment>
             {!!history.length &&
@@ -65,16 +65,7 @@ export const HolderCRUD: FC<HolderCRUDProps> =
           :
           <>
             <Flex alignContent="between">
-              <Modal
-                title={`Add Holder`}
-                cta={
-                  <Button color="green" size="large">
-                    <Icon name="plus"/>Add Holder
-                  </Button>
-                }
-              >
-                <HolderForm onSubmit={onSubmit}/>
-              </Modal>
+              <HolderForm onSubmit={onSubmit}/>
               <Data
                 icon="user"
                 data={Object.keys(holders).length}
