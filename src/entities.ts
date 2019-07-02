@@ -19,7 +19,7 @@ export function generateHolder(holder: Partial<Holder>): Holder{
   return {
     id: uuid4(),
     createDate: (new Date()).toISOString(),
-    name: 'meh',
+    name: '',
     notes: '',
     blocked: false,
     ...holder,
@@ -27,13 +27,18 @@ export function generateHolder(holder: Partial<Holder>): Holder{
   }
 }
 
-export function generateRecord
-(fromHolderId: string, toHolderId: string, assetId: string): TransferRecord {
+export function generateRecord(
+  fromHolderId: string,
+  toHolderId: string,
+  assetId: string,
+  observations: string = ''
+): TransferRecord {
   return {
     id: uuid4(),
     date: (new Date()).toISOString(),
     from: fromHolderId,
     to: toHolderId,
     asset: assetId,
+    observations
   }
 }

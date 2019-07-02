@@ -17,14 +17,19 @@ const initialState = {
   notes: '',
   blocked: false,
   serial: '',
-  assignedTo: false
+  assignedTo: false,
+  observations: ''
 };
 
-export class AssetForm extends Component<AssetFormProps, Asset> {
+export interface AssetFormState extends Asset {
+  observations: string
+}
+
+export class AssetForm extends Component<AssetFormProps, AssetFormState> {
   editMode = this.props.asset !== undefined;
   state = this.editMode
-    ? this.props.asset as Asset
-    : initialState as Asset;
+    ? {...this.props.asset, observations: ''} as AssetFormState
+    : initialState as AssetFormState;
 
 
   options = toOptions(this.props.holders);
@@ -110,6 +115,16 @@ export class AssetForm extends Component<AssetFormProps, Asset> {
             onChange={this.onChangeHandler}
             value={this.state.assignedTo}
           />
+          { this.props.asset &&
+            this.props.asset.assignedTo !== this.state.assignedTo &&
+            <Form.TextArea
+              name="observations"
+              value={this.state.observations}
+              onChange={this.onChangeHandler}
+              placeholder='Transfer observations'
+              label='Transfer observations'
+            />
+          }
           <FormButton editMode={this.editMode}/>
         </Form>
       </Modal>

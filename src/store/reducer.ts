@@ -1,6 +1,6 @@
 import {Store, TransferRecord, Holder, Asset} from "../types";
 import {Action, Actions} from "./actions";
-import {exec} from "../utils";
+import {pipe} from "../utils";
 import {StoreService} from "../services";
 import {NAMESPACE} from "../constants";
 import uuid from "uuid/v4";
@@ -22,11 +22,12 @@ function reducer(state: Store, {type, payload}: Action): Store {
     case Actions.UPSERT_ASSET:{
       const id = (payload as Asset).id || uuid();
       if ((payload as TransferRecord).hasOwnProperty('from')) {
-        const {from, to: assignedTo} = payload as TransferRecord;
+        const {from, to: assignedTo, observations} = payload as TransferRecord;
         return {
           ...state,
-          records: state.records
-            .concat(generateRecord(from as string, assignedTo as string, id)),
+          records: state.records.concat(
+              generateRecord(from as string, assignedTo as string, id, observations)
+            ),
           assets: {
             ...state.assets,
             [id]: generateAsset({id, assignedTo, ...payload})
@@ -71,9 +72,8 @@ const cache = (x: Store) => {
 };
 
 export function rootReducer(state: Store, action: Action): Store {
-  return exec(
-    reducer(state, action),
+  return pipe(
     sortStore,
     cache
-  );
+  )(reducer(state, action));
 }

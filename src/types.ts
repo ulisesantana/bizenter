@@ -25,6 +25,7 @@ export interface TransferRecord {
   from: string | boolean;
   to: string | boolean;
   asset: string;
+  observations: string
 }
 
 export interface SelectOption {

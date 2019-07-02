@@ -1,10 +1,12 @@
 import {Store, TransferRecord} from "../types";
-import {exec, mapToID, sortByDateDesc, sortByName} from "../utils";
+import {pipe, mapToID, sortByDateDesc, sortByName} from "../utils";
+
+const sortByNameAndMapToID = pipe(sortByName, mapToID);
 
 export function sortStore({assets, holders, records}: Store): Store {
   return {
-    assets: exec(Object.values(assets), sortByName, mapToID),
-    holders: exec(Object.values(holders), sortByName, mapToID),
+    assets: sortByNameAndMapToID(Object.values(assets)),
+    holders: sortByNameAndMapToID(Object.values(holders)),
     records: sortByDateDesc(records) as TransferRecord[]
   }
 }

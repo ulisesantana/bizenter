@@ -21,8 +21,9 @@ export const copyToClipboard = (str: string) => {
   }
 };
 
-export function exec(initialData: any, ...rest: Function[]) {
-  return rest.reduce((acc, fn) => fn(acc), initialData)
+export function pipe(...pipes: Function[]) {
+  return (initialData: any) =>
+    pipes.reduce((acc, fn) => fn(acc), initialData)
 }
 
 export const isString = (x: any) => x instanceof String;
