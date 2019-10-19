@@ -1,6 +1,7 @@
 import {Section, SectionHandlers} from "../utils";
 import React, {FC} from "react";
 import {Icon, Menu as MenuSemantic} from "semantic-ui-react";
+import {AuthService} from "../services";
 
 export interface MenuProps {
   section: Section,
@@ -40,6 +41,14 @@ export const Menu: FC<MenuProps> = ({section, handlers}) => {
       >
         <Icon color={ iconIsActive(Section.TransferRecords)} name='history'/>
         History
+      </MenuSemantic.Item>
+
+      <MenuSemantic.Item
+        name='sign-out'
+        onClick={AuthService.logOut}
+      >
+        <Icon name='sign-out'/>
+        Logout
       </MenuSemantic.Item>
     </MenuSemantic>
   )

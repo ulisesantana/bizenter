@@ -8,7 +8,7 @@ export interface AssetTableProps {
   onClick: MouseEventHandler
 }
 
-export const AssetTable: FC<AssetTableProps> = ({holders, assets, onClick}) => (
+export const AssetTable: FC<AssetTableProps> = ({holders, onClick, assets}) => (
   <Table celled selectable>
     <Table.Header>
       <Table.Row>

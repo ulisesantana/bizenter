@@ -74,6 +74,6 @@ const cache = (x: Store) => {
 export function rootReducer(state: Store, action: Action): Store {
   return pipe(
     sortStore,
-    cache
+    cache,
   )(reducer(state, action));
 }

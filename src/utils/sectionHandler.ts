@@ -6,10 +6,8 @@ export enum Section {
   Assets = 'ASSETS'
 }
 
-function goToGenerator(section: Section, setSection: Function){
-  return () => {
-    setSection(section)
-  };
+function goToGenerator(section: Section, setSection: Function): () => void {
+  return () => setSection(section)
 }
 
 export interface SectionHandlers {

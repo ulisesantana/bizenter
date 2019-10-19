@@ -1,11 +1,20 @@
 import {MouseEventHandler} from "react";
 import {SemanticCOLORS} from "semantic-ui-react/dist/commonjs/generic";
 
-export interface Holder {
+interface AbstractEntity {
   id: string;
   createDate: string;
   updateDate: string;
   name: string;
+}
+
+export interface Box extends AbstractEntity {
+  assets: Asset[];
+  holders: Holder[]
+  records: TransferRecord[]
+}
+
+export interface Holder  extends AbstractEntity {
   notes: string;
   blocked: boolean;
 }
@@ -34,9 +43,6 @@ export interface SelectOption {
   value: string | boolean
 }
 
-export type OnChangeFormFieldHandler<E,D> =
-  (event: E, data: D) => void
-
 export type Entity = TransferRecord | Holder;
 
 type EntityStore<T> = Record<string, T>;
@@ -55,3 +61,10 @@ export type SemanticColors = | SemanticCOLORS
   | 'linkedin'
   | 'instagram'
   | 'youtube'
+
+export interface User {
+  id: string,
+  name: string,
+  photoUrl: string,
+  email: string
+}

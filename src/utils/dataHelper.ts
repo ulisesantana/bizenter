@@ -20,16 +20,7 @@ export function sortBy(prop: string, desc = false) {
 }
 
 export const sortByName = sortBy('name');
-export const sortByDateAsc = sortBy('date');
 export const sortByDateDesc = sortBy('date', true);
-
-function removeById(id: string) {
-  return <T extends { id: string }>(x: T) => x.id !== id
-}
-
-export function filterById(id: string) {
-  return <T extends Entity>(x: T[]) => x.filter(removeById(id))
-}
 
 export function toOptions(x: Record<string, Holder>): SelectOption[] {
   return [

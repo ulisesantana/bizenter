@@ -3,6 +3,7 @@ import {getInitialState, rootReducer} from "../store";
 import {Menu} from '../components';
 import {Container, Dimmer, Loader} from "semantic-ui-react";
 import {Section, useSectionManager} from "../utils";
+import {Login, UserConsumer} from "../views/Login";
 
 const HolderCRUD = React.lazy(() => import('../views/HolderCRUD'));
 const AssetCRUD = React.lazy(() => import('../views/AssetCRUD'));
@@ -20,55 +21,60 @@ export const App: FC = () => {
   const [section, handlers] = useSectionManager();
 
   return (
-    <div className={'App'}>
-      <Menu section={section} handlers={handlers}/>
-      <Container className={'main'}>
+    <UserConsumer>
+      { ({isSignedIn}) => isSignedIn
+        ? <div className={'App'}>
+          <Menu section={section} handlers={handlers}/>
+          <Container className={'main'}>
+            <Suspense
+              fallback={<SuspenseLoader/>}
+            >
+              {section === Section.Holders &&
+              <HolderCRUD
+                assets={assets}
+                records={records}
+                holders={holders}
+                dispatch={dispatch}
+              />
+              }
+            </Suspense>
 
-        <Suspense
-          fallback={<SuspenseLoader/>}
-        >
-          {section === Section.Holders &&
-          <HolderCRUD
-            assets={assets}
-            records={records}
-            holders={holders}
-            dispatch={dispatch}
-          />
-          }
-        </Suspense>
-
-        <Suspense
-          fallback={<SuspenseLoader/>}
-        >
-          {section === Section.Assets &&
-          <AssetCRUD
-            records={records}
-            assets={assets}
-            holders={holders}
-            dispatch={dispatch}
-          />
-          }
-        </Suspense>
-
-        <Suspense
-          fallback={<SuspenseLoader/>}
-        >
-          {section === Section.TransferRecords &&
-          (
-            <>
-              <div style={{height: '41px'}}/>
-              <TransferRecordTable
+            <Suspense
+              fallback={<SuspenseLoader/>}
+            >
+              {section === Section.Assets &&
+              <AssetCRUD
+                records={records}
                 assets={assets}
                 holders={holders}
-                records={records}
+                dispatch={dispatch}
               />
-            </>
-          )
-          }
-        </Suspense>
+              }
+            </Suspense>
+            <Suspense
+              fallback={<SuspenseLoader/>}
+            >
+              {section === Section.TransferRecords &&
+              (
+                <>
+                  <div style={{height: '41px'}}/>
+                  <TransferRecordTable
+                    assets={assets}
+                    holders={holders}
+                    records={records}
+                  />
+                </>
+              )
+              }
+            </Suspense>
 
-      </Container>
-    </div>
+          </Container>
+        </div>
+        :
+        <Login/>
+
+      }
+    </UserConsumer>
   );
 };
 
