@@ -1,6 +1,6 @@
 # Bizenter
 
-Go to [the app](https://ulisesantana.dev/bizenter)
+Go to [the app](https://bizenter.app)
 
 Bizenter its just a simple assets manager with a registry about the asset transfers between holders.
 
